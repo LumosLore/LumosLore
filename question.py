@@ -27,6 +27,16 @@ def preprocess_text(text):
     return lemmatized_text
 
 # Function to extract entities
+def extract_text_from_pdf(pdf_path):
+    # Code to extract text from PDF
+    pass
+
+# Function to preprocess text
+def preprocess_text(text):
+    # Code for text preprocessing
+    pass
+
+# Function to extract entities
 def extract_entities(text):
     doc = nlp(text)
     entities = [(ent.text.strip(), ent.label_) for ent in doc.ents]
@@ -41,15 +51,16 @@ def extract_keywords_tfidf(text, max_features=20, ngram_range=(1, 2)):
     top_keywords = feature_names[sorted_indices][:max_features]
     return top_keywords
 
-# Load the spaCy English model
-#nlp = spacy.load("en_core_web_sm")
-
 # Path to your PDF file
 pdf_path = "OOP_Concepts_PDF.pdf"
 
-# Extract, preprocess text, and then extract entities and keywords
+# Extract text from PDF
 extracted_text = extract_text_from_pdf(pdf_path)
+
+# Preprocess text
 preprocessed_text = preprocess_text(extracted_text)
+
+# Extract entities and keywords
 entities = extract_entities(preprocessed_text)
 keywords = extract_keywords_tfidf(preprocessed_text)
 
