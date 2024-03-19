@@ -9,8 +9,8 @@ nlp = spacy.load("en_core_web_lg")  # Change to en_core_web_lg for a more detail
 
 
 # Function to extract text from PDF
-def extract_text_from_pdf(pdf_path):
-    doc = fitz.open(pdf_path)
+def extract_text_from_pdf(pdf_paths):
+    doc = fitz.open(pdf_paths)
     text = ""
     for page in doc:
         text += page.get_text()
@@ -34,7 +34,7 @@ def extract_text_from_pdf(pdf_path):
 # Function to preprocess text
 def preprocess_text(text):
     # Code for text preprocessing
-    pass
+    pass # getting the correct output
 
 # Function to extract entities
 def extract_entities(text):
