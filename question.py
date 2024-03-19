@@ -109,8 +109,14 @@ for question in questions:
 # Function to generate questions from keywords and entities
 def generate_questions(keywords, entities):
     questions = []
+    
     for keyword in keywords:
-        questions.append(f"What is {keyword}?")  # Simple template-based question
+        questions.append(f"What is {keyword.capitalize()}?")  # Modified to capitalize the keyword
+        questions.append(f"Can you elaborate on the concept of {keyword.lower()}?")  # Added another question template
+        
     for entity, label in entities:
-        questions.append(f"Explain {entity} and its role in {label}.")  # Simple template-based question
+        questions.append(f"Explain {entity.title()} and its significance in {label.capitalize()}.")  # Modified to capitalize the label
+        questions.append(f"Could you provide some insight into {entity.lower()} and its role in {label.lower()}?")  # Added another question template
+        
     return questions
+
