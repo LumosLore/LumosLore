@@ -18,12 +18,22 @@ def extract_text_from_pdf(pdf_paths):
     return text
 
 # Function to preprocess text
+nlp = spacy.load("en_core_web_sm")
+
 def preprocess_text(text):
+    # Convert text to lowercase
     text = text.lower()
+
+    # Remove non-alphanumeric characters
     text = re.sub(r'[^\w\s]', '', text)
+
+    # Remove digits
     text = re.sub(r'\d+', '', text)
+
+    # Tokenize and lemmatize using spaCy
     doc = nlp(text)
     lemmatized_text = " ".join([token.lemma_ for token in doc if not token.is_stop])
+
     return lemmatized_text
 
 # Function to extract entities
