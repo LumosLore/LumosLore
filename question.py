@@ -25,10 +25,10 @@ def preprocess_text(text):
     text = text.lower()
 
     # Remove non-alphanumeric characters
-    text = re.sub(r'[^\w\s]', '', text)
+    text = re.sub(r'[^\w\s]','', text)
 
     # Remove digits
-    text = re.sub(r'\d+', '', text)
+    text = re.sub(r'\d+','', text)
 
     # Tokenize and lemmatize using spaCy
     doc = nlp(text)
