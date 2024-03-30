@@ -1,8 +1,8 @@
 import fitz  # PyMuPDF for reading PDF
-import spacy
-import re
-from sklearn.feature_extraction.text import TfidfVectorizer
-import numpy as np
+import spacy  # Importing spaCy for NLP tasks
+import re  # Regular expressions module for text processing
+from sklearn.feature_extraction.text import TfidfVectorizer  # TF-IDF vectorizer for text representation
+import numpy as np  # NumPy for numerical operations
 
 # Load an enhanced spaCy model (if available and downloaded)
 nlp = spacy.load("en_core_web_lg")  # Change to en_core_web_lg for a more detailed model
