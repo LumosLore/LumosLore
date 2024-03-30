@@ -1,3 +1,4 @@
+
 import pdfminer
 from pdfminer.high_level import extract_text
 import openai
@@ -20,7 +21,7 @@ def generate_questions_with_openai(text_chunks, openai_api_key):
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": f"Generate a list of questions based on the following text:\n\n{chunk}"}
+                    {"role": "user", "content": f"Based on the following content, generate simple yet insightful questions that a student might ask to understand the key concepts better:\n\n{chunk}"}
                 ],
                 max_tokens=4096
             )
@@ -41,7 +42,6 @@ def main(pdf_path, openai_api_key):
     print("Questions generated and saved to questions.json.")
 
 if __name__ == "__main__":
-    PDF_PATH = "sdgp.pdf"  # Specify the PDF path
+    #PDF_PATH = "sdgp.pdf"  # Specify the PDF path
     OPENAI_API_KEY = "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"  # Use your actual OpenAI API key
     main(PDF_PATH, OPENAI_API_KEY)
-
