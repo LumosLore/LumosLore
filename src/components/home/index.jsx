@@ -1,23 +1,63 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useAuth } from '../../contexts/authContext';
-/*import './FileUpload.css'*/
+import axios from 'axios';
+import { useDropzone } from 'react-dropzone';
+import './FileUpload.css'; // Make sure this is the correct path to your CSS file
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import dragIcon from './1.jpg'; // Import the drag icon
 
 const Home = () => {
     const { currentUser } = useAuth();
+    const [file, setFile] = useState(null);
+
+    const onDrop = useCallback(acceptedFiles => {
+        setFile(acceptedFiles[0]);
+    }, []);
+
+    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+    // Function to handle file submission
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!file) {
+            alert('Please select a file to upload.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const response = await axios.post('http://127.0.0.1:5000', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log('File uploaded successfully', response.data);
+        } catch (error) {
+            console.error('Error uploading file', error);
+        }
+    };
 
     return (
-        <div className="bg-blue-100 min-h-screen">
-            <div className='text-2xl font-bold pt-14'>Hello {currentUser.displayName ? currentUser.displayName : currentUser.email}, you are now logged in.</div>
-            <div className="container py-10 flex items-center justify-center m-4 w-full">
-                <div className="container_login bg-white p-8 rounded-lg shadow-md">
-                    <h1 className="text-4xl text-gray-800 font-bold">Lumos Lore</h1>
-                    <p className="text-lg text-gray-500">Upload Your Document Here</p>
-                    <label htmlFor="fileInput" className="block mt-4 cursor-pointer bg-green-500 hover:bg-gray-300 text-gray-800 py-3 px-4 rounded-lg flex justify-center items-center font-bold">
-                        <span>Choose File</span>
-                        <input type="file" id="fileInput" className="hidden" />
-                    </label>
-                    <p className="text-lg text-gray-600 mt-4">Or drop a file here</p>
+        <div className="upload-container">
+            <div className='greeting'>Hello {currentUser.displayName ? currentUser.displayName : currentUser.email}, you are now logged in.</div>
+            <form className="upload-form" onSubmit={handleSubmit}>
+                <div {...getRootProps()} className="dropzone">
+                    <input {...getInputProps()} />
+                    <div className="drop-message">
+                        <img src={dragIcon} alt="Upload" className="upload-icon"/>
+                        {file ? <p>{file.name}</p> : <p>Drag & Drop to Upload File</p>}
+                        <p className='or'>OR</p>
+                        <button type="button" className="browse-button">Browse File</button>
+                    </div>
                 </div>
+            </form>
+            <div>
+                <Link to="/questions"> {/* Link to the Questions component */}
+                    <button type="button" className='upload-button'>Upload File</button> {/* Button to navigate to Questions component */}
+                </Link>
             </div>
         </div>
     );

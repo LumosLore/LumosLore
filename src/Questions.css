@@ -1,27 +1,30 @@
-.quiz-container {
-  text-align: center;
-  width: 100%;
-  background-color: #f3f8eb;
-  min-height: 100vh;
+body {
+  background-color: #f0f7ff;
 }
 
+/* Quiz container styles */
+.quiz-container {
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  background-color: #e6f2ff; /* A slightly lighter shade of blue */
+  border-radius: 20px;
+  padding: 50px;
+  margin: 20px auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Question styles */
 .question {
   margin-bottom: 20px;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  width: 90%;
   text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  border-bottom: 2px solid #ccc;
-  border-right: 2px solid #ccc;
 }
 
 .question p {
   margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
 }
 
 .question input[type="text"] {
@@ -30,6 +33,56 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+/* Button styles */
+.button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 40px; /* Increase top margin for spacing */
+  display: block; /* Center the button horizontally */
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content; /* Set width to fit content */
+  text-align: center; /* Center the text within the button */
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Results and feedback container */
+.results-feedback-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.results-container,
+.feedback-container {
+  width: 45%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.results-container h2,
+.feedback-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.results-container p,
+.feedback-container p {
+  margin-bottom: 20px;
+  color: #666;
 }
 
 button {
@@ -42,40 +95,10 @@ button {
   margin-top: 20px;
 }
 
+.quiz-container button {
+  text-align: center;
+}
+
 button:hover {
   background-color: #0056b3;
-}
-
-.results-feedback-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 800px;
-  margin: 20px auto;
-}
-
-.results-container,
-.feedback-container {
-  width: 45%;
-  padding: 20px;
-  background-color: #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.results-container h2,
-.feedback-container h2 {
-  margin-bottom: 10px;
-}
-
-.results-container p,
-.feedback-container p {
-  margin-bottom: 20px;
-}
-
-.results-container{
-  margin-right: 10%;
-}
-
-.feedback-container{
-  margin-left: 10%;
 }

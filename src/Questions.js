@@ -51,7 +51,6 @@ const QuizApp = () => {
 
   return (
       <div className="quiz-container">
-          <h1>LUMOSLORE</h1>
           {!showResults ? (
               <>
                   {questions.map((question, questionIndex) => (
